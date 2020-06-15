@@ -1,11 +1,31 @@
 {
-    "require": {
-        "guzzlehttp/guzzle": "^6.5",
-      "ext-json": "*",
-      "ext-curl": "*",
-      "ext-simplexml": "*"
-    },
+  "require": {
+    "guzzlehttp/guzzle": "^6.5",
+    "php": ">=7.2.0",
+    "ext-json": "*",
+    "ext-curl": "*",
+    "ext-simplexml": "*"
+  },
   "autoload": {
-    "psr-4": {"Skyfish\\": "src/Skyfish"}
-  }
+    "psr-4": {
+      "Skyfish\\": "src/Skyfish"
+    }
+  },
+  "name": "colourbox/skyfish-sdk",
+  "type": "library",
+  "description": "Package that simplifies interacting with the Skyfish API",
+  "keywords": [
+    "sdk",
+    "skyfish"
+  ],
+  "homepage": "https://www.skyfish.com",
+  "license": "Beerware",
+  "authors": [
+    {
+      "name": "Claus Krag",
+      "email": "claus@colourbox.com",
+      "homepage": "https://www.skyfish.com",
+      "role": "Developer"
+    }
+  ]
 }

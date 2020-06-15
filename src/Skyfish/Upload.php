@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Skyfish;
 
 use GuzzleHttp\Client;
