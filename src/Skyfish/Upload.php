@@ -9,12 +9,10 @@ class Upload
 {
 
     private $httpClient;
-    private $credential;
 
-    public function __construct(Client $httpClient, Credential $credential)
+    public function __construct(Client $httpClient)
     {
         $this->httpClient = $httpClient;
-        $this->credential = $credential;
     }
 
     public function file(int $userId, int $folderId, string $file): ?int
@@ -30,9 +28,6 @@ class Upload
                 'json' => [
                     "folder" => $folderId,
                     "user" => $userId
-                ],
-                'headers' => [
-                    'Authorization' => $this->credential->getHeader()
                 ]
             ]
         );
