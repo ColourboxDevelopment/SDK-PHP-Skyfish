@@ -2,11 +2,12 @@
 
 namespace Skyfish;
 
-class Client extends \GuzzleHttp\Client
+class Client
 {
 
-    public const API = "https://claus-api.cbx.xyz";
-    public const VERSION = "v0.1";
+    public const API = "https://api.colourbox.com";
+    public const VERSION = "v0.3";
+    private $client;
 
     public function __construct(string $username, string $password, string $key, string $secret, array $config = [])
     {
@@ -14,8 +15,7 @@ class Client extends \GuzzleHttp\Client
         $config['base_uri'] = self::API;
         $config['headers']['Authorization'] = $cred->getHeader();
         $config['headers']['User-Agent'] = self::getAgent();
-        \GuzzleHttp\Client::__construct($config);
-
+        $this->client = new \GuzzleHttp\Client($config);
     }
 
     private static function getToken(string $username, string $password, string $key, string $secret): string
@@ -40,5 +40,31 @@ class Client extends \GuzzleHttp\Client
     private static function getAgent(): string
     {
         return 'Skyfish PHP SDK version: ' . self::VERSION;
+    }
+
+    public function get(string $url): array
+    {
+        return json_decode($this->client->get($url), true);
+    }
+
+    public function delete(string $url): void
+    {
+        $this->client->delete($url);
+    }
+
+    public function post(string $url, array $body)
+    {
+        return json_decode($this->client->post($url, [
+                \GuzzleHttp\RequestOptions::JSON => $body
+            ]
+        )->getBody(), true);
+    }
+
+    public function put(string $url, array $body): array
+    {
+        return json_decode($this->client->put($url, [
+                \GuzzleHttp\RequestOptions::JSON => $body
+            ]
+        )->getBody(), true);
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Skyfish;
 
-use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 
 class Upload
@@ -22,16 +21,13 @@ class Upload
 
     private function prepare(int $userId, int $folderId): array
     {
-        $response = $this->httpClient->post(
+        return $this->httpClient->post(
             "/upload/register",
             [
-                'json' => [
-                    "folder" => $folderId,
-                    "user" => $userId
-                ]
+                "folder" => $folderId,
+                "user" => $userId
             ]
         );
-        return json_decode($response->getBody(), true);
     }
 
     private function create(array $preparedResult, string $filePath): ?int
