@@ -6,7 +6,7 @@ class Client
 {
 
     public const API = "https://api.colourbox.com";
-    public const VERSION = "v0.3";
+    public const VERSION = "v0.31";
     private $client;
 
     public function __construct(string $username, string $password, string $key, string $secret, array $config = [])
@@ -35,6 +35,11 @@ class Client
             ]
         ]);
         return json_decode($result->getBody(), true)["token"];
+    }
+
+    public function upload(int $userId, int $folderId, string $file): ?int
+    {
+        return (new Upload($this))->file($userId, $folderId, $file);
     }
 
     private static function getAgent(): string
