@@ -17,7 +17,6 @@ if(count($argv) < 8) {
 }
 
 $client = new \Skyfish\Client($username, $pass, $key, $secret);
-$upload = new \Skyfish\Upload($client);
-$mediaId = $upload->file($userId, $folder, $fileName);
+$mediaId = $client->upload($userId, $folder, $fileName);
 
 echo "Successfully uploaded file, id: $mediaId\n";
