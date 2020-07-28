@@ -6,7 +6,7 @@ class Client
 {
 
     public const API = "https://api.colourbox.com";
-    public const VERSION = "v0.31";
+    public const VERSION = "v1.0.0";
     private $client;
 
     public function __construct(string $username, string $password, string $key, string $secret, array $config = [])
