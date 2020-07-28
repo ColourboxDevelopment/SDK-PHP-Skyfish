@@ -49,7 +49,7 @@ class Client
 
     public function get(string $url): array
     {
-        return json_decode($this->client->get($url), true);
+        return json_decode($this->client->get($url)->getBody(), true);
     }
 
     public function delete(string $url): void
