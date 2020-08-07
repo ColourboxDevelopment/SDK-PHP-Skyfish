@@ -14,18 +14,17 @@ class Upload
         $this->httpClient = $httpClient;
     }
 
-    public function file(int $userId, int $folderId, string $file): ?int
+    public function file(int $folderId, string $file): ?int
     {
-        return $this->create($this->prepare($userId, $folderId), $file);
+        return $this->create($this->prepare($folderId), $file);
     }
 
-    private function prepare(int $userId, int $folderId): array
+    private function prepare(int $folderId): array
     {
         return $this->httpClient->post(
             "/upload/register",
             [
-                "folder" => $folderId,
-                "user" => $userId
+                "folder" => $folderId
             ]
         );
     }
